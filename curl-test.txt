@@ -6,7 +6,7 @@
 curl --request POST \
   --url https://pnpinfos.auth0.com/oauth/token \
   --header 'content-type: application/json' \
-  --data '{"client_id":"Yv8ag5pKdScgQwTZ5eC7EArHWdKQ2J5k","client_secret":"bTvFM5XXujxAG3m9FvCNMYrI5ZFv24TJdq2lJze_SYNVvPF7rURsfL-YhzU6M5I9","audience":"https://appointments","grant_type":"client_credentials"}' | jq
+  --data '{"client_id":"Yv8ag5pKdScgQwTZ5eC7EArHWdKQ2J5k","client_secret":"","audience":"https://appointments","grant_type":"client_credentials"}' | jq
 
 ** access api at http://localhost:4000/authorized
 curl --request GET \
@@ -49,3 +49,18 @@ app.get('/authorized', function (req, res) {
 
 app.listen(port);
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>.
+
+** jwks verification:
+https://pnpinfos.auth0.com/.well-known/jwks.json
+
+certificate:
+<<<<<<<<<<
+MIIC/zCCAeegAwIBAgIJRHtAo/9opxW3MA0GCSqGSIb3DQEBCwUAMB0xGzAZBgNVBAMTEnBucGluZm9zLmF1dGgwLmNvbTAeFw0yMDAzMTEyMjI3MDlaFw0zMzExMTgyMjI3MDlaMB0xGzAZBgNVBAMTEnBucGluZm9zLmF1dGgwLmNvbTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAMAq1qvyDFXRh8+fqifC6MviqWJv8MxW+IKEJYUV3zfilIDHnRt8cZBlr/yOnHLnBve9BMsVt84wjjfnjEyT1wDbIBKlm77Avf7s9okV5OWKM/kaDVwB1nVcECWYgi1y6GwvAZOkjuKdBXbQSMu0q8SOZJeuUju7JSB3xjG4IS3X1L5Dqxvhr4mpv5FkK7Lyg3lQF2DPhH54qyaBwj2lENdBD1jbs0bOkqz2E+efAuaRk4a99pUnns+aNUDzY8ZgS5OH5pVbytlPEQ2sZ/bNgNPGwBPRJdEFiLxD17VdBb/2G2698dqLbjMnv+g7ymzumzqQ9W4L1NMMsdVyj7U73A0CAwEAAaNCMEAwDwYDVR0TAQH/BAUwAwEB/zAdBgNVHQ4EFgQUYZ+v0JxyNGWhv4E1E4H7lT42VMkwDgYDVR0PAQH/BAQDAgKEMA0GCSqGSIb3DQEBCwUAA4IBAQBbwQwegQg5AxSs8sRG9MlfXqBlN/Qn8SlXNKzZ7j/6aE6MOK8xyEzucGr2szuit6SQH9/VmqRXL/cuQyLxf+/yTz91O6KODvaxycAnYkSQgFomcGLD0gqG6FxPVEAov1MI6iLj2pRrkya7jiBIJP3oOd8BP/LJA581/0lvz9XVbjX9+tYQlpS1YD7/Wj9xo67yWO1oteVlq/ZqGT6IVGQ8nSbXBOW2NJ6ISoScAr4BgDKw57npWOcFRWyLGFeTzY+w7o53zrrnHz05cKCY7K0nkRCGX3Y+FtKF1KevKwt03irckdJqKiXrVJeXf1DSwe+aJvhItHW8lG5FMJR/GMOX
+>>>>>>>>>>
+
+openssl x509 -in auth0-x5c.crt -text -noout
+or,
+https://www.sslshopper.com/certificate-decoder.html
+
+** understand jwks: 
+https://tools.ietf.org/html/rfc7517
